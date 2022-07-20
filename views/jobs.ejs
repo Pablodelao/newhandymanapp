@@ -1,0 +1,185 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    job POST
+
+    <section data-position="jobsposted">
+        <h2>Jobs available</h2>
+  
+        <ul class="jobsposted">
+          <% for(var i = 0; i < jobsposted.length; i++) {%>
+          <li class="jobsposted">
+            <span><%= jobsposted[i].Name %></span>:
+            <span><%= jobsposted[i].Email %></span>
+          </li>
+          <% } %>
+        </ul>
+      </section>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Maps JavaScript API with Places Library Autocomplete Address Field</title> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+Google Maps JavaScript library
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDjxh6hCpAIjfRgk7fbb-fp7yy6-Fgd5p4"></script>
+ 
+<style>
+#search_input {font-size:18px;}
+.form-group{
+ margin-bottom: 10px;margin-top:50px;
+}
+.form-group label{
+ font-size:18px;
+ font-weight: 600;
+}
+.form-group input{
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-group input:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <p><h1>Google Maps JavaScript API with Places Library Autocomplete Address Field</h1></p>
+   <!- Autocomplete location search input --> 
+   <!-- <div class="form-group">
+    <label>Location:</label>
+    <input type="text" class="form-control" id="search_input" placeholder="Type address..." />
+   </div>
+     </div>
+   </div>
+</div>
+<script>
+var searchInput = 'search_input';
+ 
+$(document).ready(function () {
+ var autocomplete;
+ autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+  types: ['geocode'],
+  /*componentRestrictions: {
+   country: "USA"
+  }*/
+ });
+  
+ google.maps.event.addListener(autocomplete, 'place_changed', function () {
+  var near_place = autocomplete.getPlace();
+ });
+});
+</script>
+
+
+
+
+
+</body>
+</html>  -->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Place Autocomplete With Latitude & Longitude </title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+#pac-input {
+    background-color: #fff;
+    padding: 0 11px 0 13px;
+    width: 400px;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    text-overflow: ellipsis;
+}
+#pac-input:focus {
+    border-color: #4d90fe;
+    margin-left: -1px;
+    padding-left: 14px;  /* Regular padding-left + 1. */
+    width: 401px;
+}
+
+</style>
+     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDjxh6hCpAIjfRgk7fbb-fp7yy6-Fgd5p4"></script> 
+    <script>
+
+
+  function initialize() {
+        var address = (document.getElementById('pac-input'));
+        var autocomplete = new google.maps.places.Autocomplete(address);
+        autocomplete.setTypes(['geocode']);
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+        }
+        /*********************************************************************/
+        /* var address contain your autocomplete address *********************/
+        /* place.geometry.location.lat() && place.geometry.location.lat() ****/
+        /* will be used for current address latitude and longitude************/
+        /*********************************************************************/
+        document.getElementById('lat').innerHTML = place.geometry.location.lat();
+        document.getElementById('long').innerHTML = place.geometry.location.lng();
+        });
+  }
+
+   google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    </head>
+    <body>
+      <section data-position="jobsposted">
+        <h2>Jobs available</h2>
+  
+        <ul class="jobsposted">
+          <% for(var i = 0; i < jobsposted.length; i++) {%>
+          <li class="jobsposted">
+            <span><%= jobsposted[i].Name %></span>:
+            <span><%= jobsposted[i].Email %></span>
+          </li>
+          <% } %>
+        </ul>
+      </section>
+<input id="pac-input" class="controls" type="text"
+        placeholder="Enter a location">
+<div id="lat"></div>
+<div id="long"></div>
+</body>
+</html>
