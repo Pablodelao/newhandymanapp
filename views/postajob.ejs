@@ -6,17 +6,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #map{
-            height: 400px;
-            width: 100%;
+        #pac-input {
+            background-color: #fff;
+            padding: 0 11px 0 13px;
+            width: 400px;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            text-overflow: ellipsis;
         }
-
-    </style>
+        #pac-input:focus {
+            border-color: #4d90fe;
+            margin-left: -1px;
+            padding-left: 14px;  /* Regular padding-left + 1. */
+            width: 401px;
+        }
+        
+        </style>
 </head>
 <body>
 
+     <!-- Topbar Start -->
+     <div class="container-fluid bg-dark">
+        <div class="row py-2 px-lg-5">
+            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center text-white">
+                    <small><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</small>
+                    <small class="px-3">|</small>
+                    <small><i class="fa fa-envelope mr-2"></i>info@example.com</small>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-white pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+      <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+          <a href="index.html" class="navbar-brand ml-lg-3">
+              <h1 class="m-0 display-5 text-uppercase text-primary"><i class="fa fa-truck mr-2"></i>Faster</h1>
+          </a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+              <div class="navbar-nav m-auto py-0">
+                  <a href="index.html" class="nav-item nav-link active">Home</a>
+                  <a href="" class="nav-item nav-link">About</a>
+                  <a href="" class="nav-item nav-link">Service</a>
+                  <a href="" class="nav-item nav-link">Price</a>
+                  <div class="nav-item dropdown">
+                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                      <div class="dropdown-menu rounded-0 m-0">
+                          <a href="" class="dropdown-item">Blog Grid</a>
+                          <a href="" class="dropdown-item">Blog Detail</a>
+                      </div>
+                  </div>
+                  <a href="" class="nav-item nav-link">Contact</a>
+              </div>
+              <a href="/offerservice" class="btn btn-primary py-2 px-4 d-none d-lg-block">Offer your Services</a>
+          </div>
+      </nav>
+  </div>
+  <!-- Navbar End -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDjxh6hCpAIjfRgk7fbb-fp7yy6-Fgd5p4"></script> 
+   <script>
+
+
+    function initialize() {
+          var address = (document.getElementById('pac-input'));
+          var autocomplete = new google.maps.places.Autocomplete(address);
+          autocomplete.setTypes(['geocode']);
+          google.maps.event.addListener(autocomplete, 'place_changed', function() {
+              var place = autocomplete.getPlace();
+              if (!place.geometry) {
+                  return;
+              }
+  
+          var address = '';
+          if (place.address_components) {
+              address = [
+                  (place.address_components[0] && place.address_components[0].short_name || ''),
+                  (place.address_components[1] && place.address_components[1].short_name || ''),
+                  (place.address_components[2] && place.address_components[2].short_name || '')
+                  ].join(' ');
+          }
+          document.getElementById('lat').innerHTML = place.geometry.location.lat();
+          document.getElementById('long').innerHTML = place.geometry.location.lng();
+          });
+    }
+  
+     google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <script>
+       document.getElementById('work').addEventListener('click',works)
+
+function works (){
+    console.log('its working')
+}
+    </script>
+
     <section>
     <form action="/postajob" method="POST">
+        <h1>Input your information</h1>
         <input type="text" placeholder="name" name="Name" />
         <input type="text" placeholder="Phone Number" name="Email" />
         <select  name="Service" >
@@ -31,106 +141,17 @@
             <option>Kitchen Design</option>
             <option>Welding</option>
         </select>
-        <textarea placeholder="Describe the service you want p" name="Description" > </textarea>
+        <h4>Describe the service you need below</h4>
+        <textarea placeholder="Describe the service you want p" name="Description" cols="100" rows="5" > </textarea>
+        <input name="location" id="pac-input" class="controls" type="text" placeholder="Enter a location"  >
+        <br>
+        <textarea name="lat" id="lat" cols="30" rows="1"></textarea>
+        <textarea name="long" id="long" cols="30" rows="1"></textarea>
+        <br>
         <button type="submit">Submit</button>
       </form>
       
     </section>
-
-
-    <h1>My Google Map</h1>
-    <div id="map" > </div>
-    <script> 
-  
-        // new starts
-
-        function initMap() {
-                var options = {  //Creates map options to add to the default map.
-                    zoom:8,
-                    center:{lat:26.0508,lng:-98.2979}
-                }
-                var map = new google.maps.Map(document.getElementById('map'), options); //Creates the map and includes the options.
-                
-                
-                
-                //Listen for click on map
-                google.maps.event.addListener(map, 'click', function(event){
-                    addMarker({coords:event.latLng}); //Add marker
-                });
-                
-                
-                
-                //Array of markers
-                    var markers = [
-            {
-                coords:{lat: 26.0710, lng:-98.3424 },
-             iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-            content:"<h1> Mi casa</h1>", 
-         },
-         {
-            coords:{lat: 26.0647, lng:-98.3116 },
-                content:"<h1> La canada</h1>", },
-          {
-             coords:{lat: 26.0928, lng:-98.2772 },
-                content:"<h1> parroquia</h1>",}
-    ]
-                
-                
-                
-                //Loop through markers
-                for(var i = 0;i < markers.length;i++) {
-                    addMarker(markers[i]); //Add markers
-                }
-            
-                
-                
-                //Add Marker function
-                function addMarker(props) { 
-                        var marker = new google.maps.Marker({ 
-                        position:props.coords,
-                        map:map,
-                        //icon:props.iconImage
-                    });
-                    
-                    if(props.iconImage) {  //Check for custom icon
-                       marker.setIcon(props.iconImage); //Set icon image
-                    }
-                    
-                    if(props.content) { //Check content
-                         var infoWindow = new google.maps.InfoWindow({
-                            content:props.content
-                        });
-                
-                        marker.addListener('click', function() {
-                            infoWindow.open(map,marker);
-                        }); 
-                    } 
-                }
-            }
-
-            // Geolocation starts
-            if ('geolocation' in navigator){
-                // geo location available
-                console.log("geolocation avaiable")
-                navigator.geolocation.getCurrentPosition(position=> {
-                    console.log(position.coords.latitude)
-                    console.log(position.coords.latitude)
-
-                })
-               }else{
-                // geolocation is not available
-                console.log("isn't avalable")
-            }
-
-    
-    </script>
-    <script async          
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjxh6hCpAIjfRgk7fbb-fp7yy6-Fgd5p&callback=initMap">
-    </script>
-    //they key has been modified to prevent use by other people
-    
-
-    
     
 </body>
 </html>

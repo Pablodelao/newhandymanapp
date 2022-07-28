@@ -7,7 +7,39 @@
   </head>
 
   <body>
-    <h1 data-position="header">May Node and Express be with you.</h1>
+
+  <!-- Navbar Start -->
+  <div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+        <a href="index.html" class="navbar-brand ml-lg-3">
+            <h1 class="m-0 display-5 text-uppercase text-primary"><i class="fa fa-truck mr-2"></i>Faster</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav m-auto py-0">
+                <a href="/" class="nav-item nav-link active">Home</a>
+                <a href="" class="nav-item nav-link">About</a>
+                <a href="" class="nav-item nav-link">Service</a>
+                <a href="" class="nav-item nav-link">Price</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="" class="dropdown-item">Blog Grid</a>
+                        <a href="" class="dropdown-item">Blog Detail</a>
+                    </div>
+                </div>
+                <a href="" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="/offerservice" class="btn btn-primary py-2 px-4 d-none d-lg-block">Offer your Services</a>
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->
+<!-- Navbar End -->
+    
+    <h1 data-position="header">Become a service provider</h1>
 
     <section data-position="add-quote">
       <h2>Add a job</h2>
@@ -27,92 +59,15 @@
             <option>Kitchen Design</option>
             <option>Welding</option>
         </select>
-        <input name="location" id="pac-input" class="controls" type="text" placeholder="Enter a location"  >
+        <input name="location" id="pac-input" class="controls" type="text" placeholder="Enter your location"  >
+        <br><br>
         <textarea name="lat" id="lat" cols="30" rows="1"></textarea>
         <textarea name="long" id="long" cols="30" rows="1"></textarea>
+        <br>
         <button type="submit">Submit</button>
       </form>
+     <span> After this form is completed you info will be added to our database and potential customers will be able to see your phone number</span>
     </section>
-
-    <!-- <section data-position="update-quote">
-      <div>
-        <h2>Darth Vadar invades!</h2>
-        <p>
-          Replace first Yoda's quote with a quote written by Darth Vadar
-        </p>
-        <button id="update-button">Replace Yoda's quote</button>
-      </div>
-      
-    </section>
-
-    <section data-position="delete-quote">
-      <div>
-        <h2>Remove Darth Vadar!</h2>
-        <p>
-          Delete one Darth Vadar's quote. Does nothing if there are no more
-          Darth Vadar's quote
-        </p>
-        <button id="delete-button">Delete Darth Vadar's quote</button>
-      </div>
-      <div id="message"></div>
-    </section> -->
-
-    <section data-position="quotes">
-      <h2>Quotes</h2>
-
-      <ul class="quotes">
-        <% for(var i = 0; i < quotes.length; i++) {%>
-        <li class="quote">
-          <span><%= quotes[i].name %></span>:
-          <span><%= quotes[i].job %></span>
-        </li>
-        <% } %>
-      </ul>
-    </section>
-    
-    <!-- add library <script
-      <script src="https://maps.googleapis.com/maps/api/js?v=3.expsigned_in=true&libraries=places"></script>
-      <!-logic to auto complete address -->
-      <!-- <script type="text/javascript" >
-        google.maps.event.AddDomListener(window,"load",intilize);
-        function intilize(){
-          var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtautocomplete'))
-          google.maps.events.AddListener(autocomplete,'plac_changed',function(){
-            var places = autocomplete.getPlace();
-            var location = "<b>Location:</b>" + places.formatted_address + "<br/>";
-            location = "<b>Latitude:</b>" + places.geometry.location.A + "<br/>"
-            location = "<b>Longitude:</b>" + places.geometry.location.F + "<br/>"
-          })
-          document.getElementById('lblresult').innerHTML= location;
-        }
-      </script>
-    <span> location</span><input type="text" id="txtautocomplete" placeholder="Enter the Address" /><br/>
-    <label id="lblresult"></label>
-
-    <script>
-
-     if ('geolocation' in navigator){
-      // geo location available
-      console.log("geolocation avaiable")
-      navigator.geolocation.getCurrentPosition(position=> {
-        let lat =  position.coords.latitude
-         let log = position.coords.longitude
-         document.getElementById("lat").innerHTML = lat;
-         document.getElementById("log").innerHTML = log;
-         console.log(position)
-
-
-      })
-      }else{
-      // geolocation is not available
-      console.log("isn't avalable")
-  }
-
-
-
-    </script> --> 
-
-
     <style>
       #pac-input {
           background-color: #fff;
@@ -161,9 +116,6 @@
          google.maps.event.addDomListener(window, 'load', initialize);
       
           </script>
-
-    <span>location:</span><input type="text" id="txtautocomplete" style="width:200px" placeholder="enter the adress"/>
-    <label id="lblresult"></label>
 
 
 

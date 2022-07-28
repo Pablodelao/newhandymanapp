@@ -10,6 +10,7 @@ const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const flash = require('connect-flash')
 const session = require("express-session")
+const {ensureAuthenticated} = require('./config/auth')
 const passport = require("passport")
 const app = express();
 
@@ -85,6 +86,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     console.log('Connected to Database')
     const db = client.db('handyman_app')
     const handymenCollection = db.collection('handymen')
+    const postajobCollection = db.collection('Job_posts')
+    
     const jobPosts = db.collection('Job_posts')
 
     app.use(expressLayouts);
@@ -155,7 +158,8 @@ app.get('/about', async (request, response) => {
 })
 
 // This will have the job posts in which Handymen will see if they want to take on the job
-app.get('/jobpost', async (request, response) => {
+// will be deleted
+app.get('/jobpost', ensureAuthenticated, async (request, response) => {
     try {
         jobPosts.find().toArray()
         .then(results => {
@@ -174,7 +178,7 @@ app.get('/jobpost', async (request, response) => {
 })
 
 // This is so that user can post a new job for handymen to do
-app.get('/postajob', async (request, response) => {
+app.get('/postajob', ensureAuthenticated, async (request, response) => {
     try {
         jobPosts.find().toArray()
         .then(results => {
@@ -191,6 +195,19 @@ app.get('/postajob', async (request, response) => {
     //     response.status(500).send({message: error.message})
     // }
 })
+
+app.get('/api2', (request,response) => {
+    try {
+        postajobCollection.find({}).toArray()
+        .then(results => {
+            response.json(results)
+        })      
+    } catch (error) {
+        response.status(500).send({message: error.message})
+    }
+});
+
+
 
 app.get('/api', (request,response) => {
     try {
@@ -211,7 +228,7 @@ app.get('/api', (request,response) => {
     // })
 });
 
-app.get('/search', async (request, response) => {
+app.get('/search',ensureAuthenticated, async (request, response) => {
     try {
         console.log(globalVariable)
         console.log(coordss)
@@ -234,7 +251,27 @@ app.get('/search', async (request, response) => {
  
 })
 
-app.get('/search1', async (request, response) => {
+app.get('/activejobs', async (request, response) => {
+    try {
+        console.log("new")
+        console.log(globalVariable)
+        console.log(typeof(globalVariable))
+        postajobCollection.find({}).toArray()
+        
+        .then(results => {
+            console.log(results)
+            response.render('activejobsmap.ejs', {quotes: results})
+        })
+        
+        
+        
+    } catch (error) {
+        response.status(500).send({message: error.message})
+    }
+ 
+})
+
+app.get('/offerservice', ensureAuthenticated, async (request, response) => {
     try {
         console.log("new")
         console.log(globalVariable)
@@ -243,7 +280,7 @@ app.get('/search1', async (request, response) => {
         
         .then(results => {
             console.log(results)
-            response.render('search1.ejs', {quotes: results})
+            response.render('search1.ejs',)
         })
         
         

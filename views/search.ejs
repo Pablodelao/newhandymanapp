@@ -5,15 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+      <!-- Google Web Fonts -->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+  
+      <!-- Font Awesome -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  
+      <!-- Libraries Stylesheet -->
+      <link href="/librarymain.css" rel="stylesheet">
+  
+      <!-- Customized Bootstrap Stylesheet -->
+      <link href="/stylemain.css" rel="stylesheet">
     <style>
         #map{
             height: 400px;
             width: 100%;
         }
 
+        p{
+          padding: 10px;
+          background: rgb(255, 221, 134) ;
+          border: 2px solid black;
+        }
+
     </style>
 </head>
 <body>
+   <!-- Navbar Start -->
+   <div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+        <a href="index.html" class="navbar-brand ml-lg-3">
+            <h1 class="m-0 display-5 text-uppercase text-primary"><i class="fa fa-truck mr-2"></i>Faster</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav m-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Service</a>
+                <a href="price.html" class="nav-item nav-link">Price</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="blog.html" class="dropdown-item">Blog Grid</a>
+                        <a href="single.html" class="dropdown-item">Blog Detail</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="contact.html" class="btn btn-primary py-2 px-4 d-none d-lg-block">Offer your Services</a>
+        </div>
+    </nav>
+</div>
   
    <span>longitude</span>  <div id="lon"><%= sendcoords.longitude %></div>
     <span>latitude</span>  <div id="lat" ><%= sendcoords.latitude %></div>
@@ -68,7 +114,7 @@
     console.log(typeof(data2[0].lat))
 
     for (let index = 0; index <data2.length; index++) { 
-      markers.push({coords:{lat: Number(data2[index].lat),lng: Number(data2[index].long),},content: `<h1> ${data2[index].name}</h1>`})
+      markers.push({coords:{lat: Number(data2[index].lat),lng: Number(data2[index].long),},content: `<span>  I am <h5> ${data2[index].name}</h5>, I am an <h5> ${data2[index].job}</h5> expert, </span>my phone number is <h5> ${data2[index].Phone_number}</h5> `})
 
 }
 
@@ -77,15 +123,6 @@ for(var i = 0;i < markers.length;i++) {
                     addMarker(markers[i]); //Add markers
                 }
   }
-
-
-                              
-                //Loop through markers
-                // for(var i = 0;i < markers.length;i++) {
-                //     addMarker(markers[i]); //Add markers
-                // }
-            
-                
                 
                 //Add Marker function
                 function addMarker(props) { 
@@ -129,7 +166,7 @@ for(var i = 0;i < markers.length;i++) {
     const data = await responce.json();
 
     for (item of data){
-      const root = document.createElement('div')
+      const root = document.createElement('p')
       const name = document.createElement('div')
       const phone = document.createElement('div')
       const location = document.createElement('div')
@@ -149,7 +186,7 @@ for(var i = 0;i < markers.length;i++) {
 
 
 
-  </ul> -->
+  </ul>
    <ul class="quotes">
     <% for(var i = 0; i < quotes.length; i++) {%>
     <li class="quote">
@@ -172,6 +209,9 @@ for(var i = 0;i < markers.length;i++) {
 
 </section>
 
+<section>
+
+<a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
     
     
 </body>

@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #map{
+            height: 400px;
+            width: 100%;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <span>longitude</span>  <div id="lon"></div>
+    <span>latitude</span>  <div id="lat" ></div>
+    <h1>My Google Map</h1>
+    <div id="map" > </div>
+    <script> 
+
+        // Problem starts
+
+         function initMap() {
+            if ('geolocation' in navigator) {
+        console.log('geolocation available');
+        navigator.geolocation.getCurrentPosition(position => {
+         let latt = position.coords.latitude;
+        let longg = position.coords.longitude;
+        console.log(latt)
+        console.log(longg)
+        //   console.log(latt);
+        //   console.log(longg)
+          document.getElementById('lat').textContent = latt;
+          document.getElementById('lon').textContent = longg;
+
+                var options = {  //Creates map options to add to the default map.
+                    zoom:13,
+                    center:{lat:Number(latt) , lng:Number(longg)} 
+                }
+                var map = new google.maps.Map(document.getElementById('map'), options); //Creates the map and includes the options.
+                
+                
+                
+                //Listen for click on map
+                google.maps.event.addListener(map, 'click', function(event){
+                    addMarker({coords:event.latLng}); //Add marker
+                });
+                
+                
+                
+                //Array of markers
+            var markers = [
+            {
+                coords:{lat:Number(latt), lng:Number(longg) },
+             iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            content:"<h1> Your location</h1> "
+
+         },
+    ]
+
+    getcoords();
+  async function getcoords(){
+    const responce = await fetch('/api2');
+    const data2 = await responce.json();
+    console.log(data2)
+    console.log(typeof(data2[0].lat))
+
+    for (let index = 0; index <data2.length; index++) { 
+      markers.push({coords:{lat: Number(data2[index].lat),lng: Number(data2[index].long),},content: `<span>  ${data2[index].Name}, Service needed ${data2[index].Service}, </span> <h5> Phone number ${data2[index].Email}</h5> <span> description: ${data2[index].Description} </span> `})
+
+}
+
+console.log(markers)
+for(var i = 0;i < markers.length;i++) {
+                    addMarker(markers[i]); //Add markers
+                }
+  }
+                function addMarker(props) { 
+                        var marker = new google.maps.Marker({ 
+                        position:props.coords,
+                        map:map,
+                        //icon:props.iconImage
+                    });
+                    
+                    if(props.iconImage) {  //Check for custom icon
+                       marker.setIcon(props.iconImage); //Set icon image
+                    }
+                    
+                    if(props.content) { //Check content
+                         var infoWindow = new google.maps.InfoWindow({
+                            content:props.content
+                        });
+                
+                        marker.addListener('click', function() {
+                            infoWindow.open(map,marker);
+                        }); 
+                    } 
+                }
+
+         
+        });
+      } else {
+        console.log('geolocation not available');
+      }
+         
+            }
+              
+    </script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjxh6hCpAIjfRgk7fbb-fp7yy6-Fgd5p4&callback=initMap">
+    </script>
+
+    
+</body>
+</html>
+

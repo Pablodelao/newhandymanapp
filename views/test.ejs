@@ -64,19 +64,19 @@
         <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
             <div class="navbar-nav m-auto py-0">
                 <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Service</a>
-                <a href="price.html" class="nav-item nav-link">Price</a>
+                <a href="" class="nav-item nav-link">About</a>
+                <a href="" class="nav-item nav-link">Service</a>
+                <a href="" class="nav-item nav-link">Price</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 m-0">
-                        <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                        <a href="single.html" class="dropdown-item">Blog Detail</a>
+                        <a href="" class="dropdown-item">Blog Grid</a>
+                        <a href="" class="dropdown-item">Blog Detail</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="contact.html" class="btn btn-primary py-2 px-4 d-none d-lg-block">Offer your Services</a>
+            <a href="/offerservice" class="btn btn-primary py-2 px-4 d-none d-lg-block">Offer your Services</a>
         </div>
     </nav>
 </div>
@@ -130,15 +130,6 @@
     }
   
      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-  
-    <button id="work" > will it work?</button>
-    <script>
-       document.getElementById('work').addEventListener('click',fuck)
-
-function fuck (){
-    console.log('its working')
-}
     </script>
 
 
@@ -200,7 +191,7 @@ function fuck (){
                 <option>Kitchen Design</option>
                 <option>Welding</option>
             </select>
-           <a href="http://localhost:8000/search" ><button  id="button" style="height: 50px; width: 200px; max-width: 300px;"  class="btn btn-primary px-3">Search</button><a>
+           <a href="/search" ><button  id="button" style="height: 50px; width: 200px; max-width: 300px;"  class="btn btn-primary px-3">Search</button><a>
            <!-- <a href="http://localhost:8000/search"> <button  id="button" style="height: 50px; width: 200px; max-width: 300px;"  class="btn btn-primary px-3">Search</button></a> -->
         </div>
         <div id="lat"></div>
@@ -209,9 +200,9 @@ function fuck (){
 
     <!--  Quote Request Start -->
     <div class="container-fluid bg-secondary my-5">
-      <div class="container">
+      <div class="container" id="containn">
           <div class="row align-items-center">
-              <div class="col-lg-7 py-5 py-lg-0">
+              <div class="col-lg-7 py-5 py-lg-0" id="loll">
                   <h6 class="text-primary text-uppercase font-weight-bold">Post A Job</h6>
                   <h1 class="mb-4">Post a Job and have skilled professionals reach out to you!</h1>
                   <p class="mb-4">If you can't find what you are looking for post the details of your job your budget and skilled proffesionals that are willing to take the job will reach out to you</p>
@@ -242,15 +233,13 @@ function fuck (){
                           <div class="form-group">
                               <select class="custom-select border-0 px-4" style="height: 47px;">
                                   <option selected>Select A Service</option>
-                                  <option value="1">Service 1</option>
-                                  <option value="2">Service 1</option>
-                                  <option value="3">Service 1</option>
+                                  <option value="1">Electrical</option>
+                                  <option value="2">Welding</option>
+                                  <option value="3">Plumbing</option>
                               </select>
                           </div>
-                          <div>
-                              <button class="btn btn-dark btn-block border-0 py-3" type="submit">Get A Quote</button>
-                          </div>
                       </form>
+                      <a href='postajob'><button class="btn btn-dark btn-block border-0 py-3">Post A Job</button></a>
                   </div>
               </div>
           </div>
@@ -347,7 +336,7 @@ function fuck (){
             <div class="position-relative bg-secondary p-4">
                 <i class="fa fa-3x fa-quote-right text-primary position-absolute" style="top: -6px; right: 0;"></i>
                 <div class="d-flex align-items-center mb-3">
-                    <img class="img-fluid rounded-circle" src="img/testimonial-4.jpg" style="width: 60px; height: 60px;" alt="">
+                    <!-- <img class="img-fluid rounded-circle" src="img/testimonial-4.jpg" style="width: 60px; height: 60px;" alt=""> -->
                     <div class="ml-3">
                         <h6 class="font-weight-semi-bold m-0">Bill</h6>
                         <small>- Carpenter</small>
