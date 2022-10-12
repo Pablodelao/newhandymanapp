@@ -1,17 +1,23 @@
-# Blackjack API game: <a href="https://simpleblackjack.netlify.app//" target="_blank">Play Here</a>
-<a href="https://simpleblackjack.netlify.app//" target="_blank"><img src="https://media.giphy.com/media/1vNlxVMvYtRSv4KdBh/giphy.gif" /></a>
+# Handyman App: <a href="https://simpleblackjack.netlify.app//" target="_blank">Try it</a>
+<a href="https://simpleblackjack.netlify.app//" target="_blank"><img src="https://media.giphy.com/media/PgnrYl21S1YBSI50LN/giphy.gif" /></a>
 
 
 ## Tech used: ![HTML5 BADGE](https://img.shields.io/static/v1?label=|&message=HTML5&color=23555f&style=plastic&logo=html5)![CSS BADGE](https://img.shields.io/static/v1?label=|&message=CSS3&color=285f65&style=plastic&logo=css3)![JAVASCRIPT BADGE](https://img.shields.io/static/v1?label=|&message=JAVASCRIPT&color=3c7f5d&style=plastic&logo=javascript)
 
-I made a simple blackjack game. I was inspired to make a blackjack game because I play the videogame GTA V and often my friends and I play blackjack in there together. I tried as much as possible not to get help to make it.
-It follows the regular rules of blackjack. 
-It works by using the following API:  <a href="https://www.deckofcardsapi.com/" target="_blank">deckofcardsapi</a>
+This app helps you find handymen in your area. This app’s objective is to help users find experts in various trades as quickly as possible. Put yourself in this situation. This happened to me once so I decided to create this app. It’s your first day on the job so you are a bit nervous and bam!! You leave your keys inside your car. So now you need a locksmith a soon as possible. This app would put you in contact with the closest locksmiths to you. 
+This app also would help tradesmen find work consistently. It can serve as a service similar to uber. In the sense that tradesmen can offer themselves if a job is posted.
 
 
-## Optimizations
-In the future I would like to fix two things in terms of functionality 
-1.	There is a small bug where one of the player cards won’t disappear if you click new game. This happens when the dealer draws over 3 cards, and the player drew 2 or more cards. A simple refresh fixes this and most of the time this situation won’t happen as this situation is not super frequent
+
+## What pages can I visit? 
+You will be asked to create an account. At some point you can create an account or you can use the following test account. 
+Email: test@test.com
+Password : 123456
+
+
+1.	“/”
+This is the main page. Here you can specify a location and a service. Then click on search and you will be redirected to the “search” page. Which will have a map with the available tradesmen, how close they are to you and their contact information.
+
 2.	In blackjack the ace can be worth 1 or 11 depending on the situation. In this project for the sake of simplicity I decided to make the ace worth 11 only. But in the future, I’ll fix this.
 Another improvement I would like to make is make it look better overall. I was focused on making it work but I will be working on making it look better in the future
 
