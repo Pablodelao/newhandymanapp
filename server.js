@@ -6,6 +6,8 @@ console.log("going live")
 
 //3. Declare variables
 const express = require("express")
+require("dotenv").config({ path: "./config/.env" });
+const PORT = process.env.PORT || 8850
 const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const flash = require('connect-flash')
@@ -18,7 +20,8 @@ const app = express();
 require('./config/passport')(passport);
 
 //DB Config 2
-const db = require('./config/keys').MongoURI
+const db = process.env.MONGODB_URI
+console.log(db)
 
 
 
@@ -76,12 +79,10 @@ const bodyParser = require('body-parser')
 const cors = require("cors")
 const { text, request, response } = require("express")
 const MongoClient = require("mongodb").MongoClient
-const connectionString = 'mongodb+srv://Elmega123:qyx4Ozr6LlUsU5g7@cluster0.ziids.mongodb.net/?retryWrites=true&w=majority'
-require('dotenv').config() 
-const PORT = process.env.PORT || 8850
+
 
 // Put in a dotenv file later
-MongoClient.connect(connectionString, { useUnifiedTopology: true })
+MongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
     const db = client.db('handyman_app')

@@ -111,10 +111,11 @@
   async function getcoords(){
     const responce = await fetch('/api');
     const data2 = await responce.json();
-    console.log(typeof(data2[0].lat))
 
     for (let index = 0; index <data2.length; index++) { 
-      markers.push({coords:{lat: Number(data2[index].lat),lng: Number(data2[index].long),},content: `<span>  I am <h5> ${data2[index].name}</h5>, I am an <h5> ${data2[index].job}</h5> expert, </span>my phone number is <h5> ${data2[index].Phone_number}</h5> `})
+      markers.push({coords:{lat: Number(data2[index].lat),lng: Number(data2[index].long),},
+      content: `<span>  I am <h5> ${data2[index].name}</h5>, I am an <h5> ${data2[index].job}
+        </h5> expert, </span>my phone number is <h5> ${data2[index].Phone_number}</h5> `})
 
 }
 
